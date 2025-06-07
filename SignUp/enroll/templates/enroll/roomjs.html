@@ -1,0 +1,42 @@
+<script>
+$(document).ready(function(){
+
+setInterval(function(){
+    $.ajax({
+        type: 'GET',
+        url : "/getMessages/{{room}}/",
+        success: function(response){
+            console.log(response);
+            $("#display").empty();
+            var a = "{{username}}";
+            a = a.toUpperCase();
+            console.log(a);
+            for (var key in response.messages)
+             {
+              if (response.messages[key].user != a)
+                {
+                var temp="<div class='container darker'><b class='txt-b mb-3'>"+response.messages[key].user+"</b><p class='txt-c'>"+response.messages[key].message_content+"</p><span class='time-left'>"+response.messages[key].message_date+"</span></div>";
+                $("#display").append(temp);
+                 }
+              else
+                {
+                    var temp="<div class='container darkerY '><b class='bY txt-b mb-3'>"+'You'+"</b><p class='pcont txt-c'>"+response.messages[key].message_content+"</p><span class='time-left'>"+response.messages[key].message_date+"</span></div>";
+                    $("#display").append(temp);
+                 }
+              }
+        },
+        error: function(response){
+            alert('An error occured')
+        }
+    });
+},1000);
+})
+
+</script>
+
+<script type="text/javascript">
+  document.addEventListener("contextmenu",function(y){
+  y.preventDefault();
+  });
+
+</script>

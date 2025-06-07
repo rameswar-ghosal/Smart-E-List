@@ -1,0 +1,108 @@
+{% load static %}
+<script>$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})</script>
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
+
+<script>
+    function pinfunction() {
+        console.log("clicked")
+        if (document.getElementById('ft').checked)
+               {
+                   alert("You have Pin this Item Successfully 👍 ");                
+               }
+        else{
+                   alert("You have UnPin this Item Successfully 👍 ");
+            }       
+        
+    }
+</script>
+
+
+<script>
+    function checkfunction() {
+        console.log("checked clicked")
+        var check = document.getElementById("ft");
+        console.log(check.value)
+    }
+</script>
+
+<script>
+    var icon = document.getElementById('icon');
+    icon.onclick =function(){
+    document.body.classList.toggle("dark-theme");
+    if (document.body.classList.contains("dark-theme"))
+    {
+        icon.src="{% static 'my/images/moon.png' %}";
+    }
+    else
+     {   icon.src="{% static 'my/images/sun.png' %}";
+     }
+   }
+
+</script>
+
+<script type="text/javascript">
+    $(document).on('submit','#pinform',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "pin_unpinJ" %}',
+            data:
+            {
+                id_pin: $("#myPid").attr("data"),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                      console.log(response.id)
+
+                    }
+            })
+        });
+    </script>
+
+<script>
+        $(document).ready(function() {
+            $("#myBtn").click(function() {
+                $('#CLI').hide();
+                $('.toast').toast('show');
+            });
+
+        });
+</script>
+
+<script type="text/javascript">
+    $(document).on('submit','#task-form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "profile" %}',
+            data:
+            {
+                task:$("#task").val(),
+                schedule_date:$("#se").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+
+                    }
+            })
+        });
+    </script>
+<script type="text/javascript">
+  document.addEventListener("contextmenu",function(y){
+  y.preventDefault();
+  });
+
+</script>
+
+<script>
+function myCFunction() {
+    document.getElementById("myCF").style.width="500px";
+
+}
+</script>

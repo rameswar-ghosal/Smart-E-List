@@ -1,0 +1,35 @@
+<script>
+        $(document).ready(function(){
+setInterval(function(){
+    $.ajax({
+        type: 'GET',
+        url : "userinwait",
+        success: function(response){
+            console.log("YES READY")
+            $("#display").empty();
+            var cnt = 1;
+            for (var key in response.messages)
+             {
+
+                var test = response.messages[key].users_name;
+                document.getElementById('apt').value = test;
+                {
+                  var temp="<i class='hed'>"+'Request No. - '+cnt+"</i><br><span class='label-span'>"+'Requesting for Room : '+"</span><span class='label-data-span'>"+response.messages[key].name_of_room+"</span><span class='label-span'><br>"+'His/Her Message : '+"</span><span class='label-data-span'>"+response.messages[key].users_message+"</span><br><button class='acpt-b' data-bs-toggle='modal' data-bs-target='#staticBackdrop13'  type='button'><i class='far fa-check-circle fa-2x'>"+"</i></button><button class='rct-b' data-bs-toggle='modal' data-bs-target='#staticBackdrop12'  type='button'><i class='far fa-times-circle fa-2x'>"+"</i></button><hr class='h-class'>"
+                  cnt+=1;
+
+                  $("#display").append(temp);
+                 }
+              }
+             if ($('#display').is(':empty')){
+                         $('.D').hide(1000,'linear');
+               }
+        },
+        error: function(response){
+            alert('An error occured')
+        }
+    });
+
+},1000);
+})
+</script>
+

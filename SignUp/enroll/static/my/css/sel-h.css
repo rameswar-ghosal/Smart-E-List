@@ -1,0 +1,92 @@
+  html, body {
+  width:100%;
+  height: 100%;
+  overflow:hidden;
+  background: linear-gradient(166deg, rgba(10,9,121,0.8776552857471114) 55%, rgba(3,0,255,0.7516048655790442) 100%);
+
+  }
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  min-width: 200px;
+  min-height: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: white;
+  background: radial-gradient(circle, rgba(10,9,121,0.8972631288843662) 58%, rgba(0,186,255,1) 100%);
+  border-color: none;
+  border-radius: 1000px;
+  box-shadow: -6px -6px 12px rgba(79,209,197,.64),6px 6px 12px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+button::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(200px + 12px);
+  min-height: calc(50px + 12px);
+  border: 6px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color:  whitesmoke;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+button::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #00FFCB;
+  box-shadow: -2px -2px 2px aqua,2px 2px 2px aqua;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: circle 1s infinite;
+
+}
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes circle {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+
+    width: 212px;
+    height: 212px;
+    opacity: 0;
+  }
+
+}

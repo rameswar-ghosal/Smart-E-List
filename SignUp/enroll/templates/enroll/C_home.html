@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=No">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+<link rel="stylesheet" href="{% static 'my/css/c_h.css' %}">
+</head>
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+{% include 'enroll/c_homejsatSTART.html' %}
+<body>
+
+<div class="p-2" style="border:none;">
+   <div class="row" style="border:none;">
+       <div class="col-sm-12" style="border:none;">
+            <h2 align="center">" बात चीत "</h2>
+       </div>
+   </div>
+   <div class="row" style="border:none;">
+       <div class="col-sm-12" style="border:none;">
+           <span style="display:inline;">
+                <a align="left" role="button" class="btn btn-outline-info mr-3" href="{% url 'profile' %}">Profile</a>
+                <button  class="reject-b user-manage" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropUsermanage"><i class="fas fa-chalkboard-teacher fa-2x"></i><br><span class="small"> Left Room's you want</span></button>
+                {% if userN == us_p %}
+                    <button class="user-cog" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropUserdelete"><i class="fas fa-users-cog fa-2x"></i><br><span class="small"> Delete User's you want</span></button>
+               {% endif %}
+          </span>
+       </div>
+   </div>
+</div>
+
+</div>
+     {% if userN == us_p %}
+         <!--<h3>You are Grp admin</h3>-->
+                      <button class="accordion-button" style=" word-wrap: break-word;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          <p class="text-p">Follow Requests will be shown <br>you below in black box . . .</p>
+                      </button>
+
+                    <div id="collapseOne" class="accordion-collapse collapse show " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                         <div class="di-b display_main p-3" id="display"></div>
+                          <form id="post-confirmationA" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="UN" id="UN" value=" ">
+                            <input type="hidden" name="RM" id="RM"  value=" ">
+                            <input type="hidden" name="room_name" id="rn" value=" ">
+                            <input type="hidden" name="username" id="uname" value=" ">
+                            <input type="hidden" name="apt" id="apt">
+                            <input type="hidden" name="apt" id="adm-r1" value=" ">
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop13" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="13staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="13staticBackdropLabel">Are You Sure to Accept this user's Request ?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body d-a-r-b">
+                                    <button class="accept-b" type="submit" onclick="window.location.href='{% url 'C_home' %}'" name="accept" id="adm-a" value="1"><i class="fas fa-user-check fa-2x"></i><span class="m-1"><h4>Accept</h4></span></button>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                         <!--<button class="accept-b" data-bs-toggle="modal" data-bs-target="#staticBackdrop13"  type="button" ><i class="far fa-check-circle fa-2x"></i></button>-->
+
+                          <form id="post-confirmationR" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="UN" id="UN1" value=" ">
+                            <input type="hidden" name="RM" id="RM1"  value=" ">
+                            <input type="hidden" name="room_name" id="rn1" value=" ">
+                            <input type="hidden" name="username" id="uname1" value=" ">
+                            <input type="hidden" name="apt" id="apt1">
+                            <input type="hidden" name="apt" id="adm-a1" value=" ">
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop12" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="12staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="12staticBackdropLabel">Are You Sure to Reject this user's Request ?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body d-a-r-b">
+                                    <button type="submit" onclick="window.location.href='{% url 'C_home' %}'" class="reject-b"  name="reject" id="adm-r" value="-1">
+                                        <i class="fas fa-user-slash fa-2x"></i><span class="m-1"><h4>Reject</h4></span></button>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                           <!-- Button trigger modal -->
+                          <!--  <button class="reject-b" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop12" ><i class="far fa-times-circle fa-2x"></i></button>-->
+                    </div>
+    {% else %}
+          <!--<h3>You are not a Grp admin</h3>-->
+     {% endif %}
+<!-- Modal USER MANAGE -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdropUsermanage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabelUsermanage">Left the Room You want . . .</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body RULES_DIV">
+          <form class="row g-2" method="POST" id="post-manage">
+                {% csrf_token %}
+                <input type="hidden" name="username"  value=" "/>
+                <input type="hidden" name="room_name"  value=" "/>
+                <input type="hidden" name="RM"  value=" "/>
+                <input type="hidden" name="UN"  value=" "/>
+                <input class="me-2 col-auto search-delete" type="search" name="myInputmanage" required="True"  id ="myInputmanage" onkeyup="searchmanage()" autofocus="True" placeholder="Filter Room's . . .">
+                <button class="reject-b col-auto" type="submit" ><i class="fas fa-eraser fa-2x"></i></button>
+          </form>
+      </div>
+      <div class="modal-footer footer-b-r">
+            <table class="table" id="myTablemanage">
+              <p id="demM" style="color:red;padding-right:160px;"></p>
+              <thead>
+                <tr>
+                  <th scope="col">Rooms , You are in . . .</th>
+                </tr>
+              </thead>
+              <tbody id="tbodymanage">
+              </tbody>
+            </table>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal USER DELETE-->
+<div class="modal fade" id="staticBackdropUserdelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabelUserdelete">Delete Whom you want . . .</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body RULES_DIV">
+          <form class="row g-2" method="POST" id="post-delete">
+                {% csrf_token %}
+                <input type="hidden" name="username"  value=" "/>
+                <input type="hidden" name="room_name"  value=" "/>
+                <input type="hidden" name="RM"  value=" "/>
+                <input type="hidden" name="UN"  value=" "/>
+                <input class="me-2 col-auto search-delete " type="search" name="myInputdelete" required="True"  id ="myInputdelete" onkeyup="searchdelete()" autofocus="True" placeholder="Filter User's Present . . ." >
+                <button class="reject-b col-auto" type="submit" ><i class="fas fa-user-times fa-2x"></i></button>
+          </form>
+      </div>
+      <div class="modal-footer footer-b-r">
+            <table class="table" id="myTabledelete">
+              <p id="demD" style="color:red;padding-right:160px;"></p>
+              <thead>
+                <tr>
+                  <th scope="col">Users in your Room</th>
+                </tr>
+              </thead>
+              <tbody id="tbodydelete">
+              </tbody>
+            </table>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% if messages %}
+  {% for message in messages %}
+   <div class="mymessage" id="mymessage" >
+            <small  {% if message.tags %} class ="{{message.tags}}"{% endif %}><h3>{{message}}
+                    {% if mes == 1 %}
+                               <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"  class="btn btn-outline-light">Send Follow Request ?</button>
+                    {% endif %}
+            </h3> </small>
+    </div>
+  {% endfor %}
+{% endif %}
+<!-- Modal -->
+  <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title modal-T-C" id="staticBackdropLabel1">YOU TAP ON DELETE !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <h1 class=" modal-Txt-C">Are You Sure To Delete This Item ?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-space btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="" method="POST">
+            {% csrf_token %}
+          <button type="submit" class="modal-delete-btn"><i class="fas fa-trash-alt"></i></button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Fill First . . .</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'C_home' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="username"  value=" "/>
+            <input type="hidden" name="room_name"  value=" "/>
+            <label>Room Name</label>
+            <input type="text" placeholder="You Room's choice name . . ." required="True" autofocus="True" name="RM">
+            <label>Your Message</label>
+            <input type="text" placeholder="Please Enter your message . . ." required="True" name="UN">
+            <input type="submit" value="Send Follow Request">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+        <form id="post-form" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="UN"  value=" "/>
+            <input type="hidden" name="RM"  value=" "/>
+            <label>Room Name</label><span><button type="button" class="rules-b" data-bs-toggle="modal" data-bs-target="#staticBackdropRULES" ><i class="fas fa-book-reader fa-2x"></i><small> RULES</small></button></span>
+            <input type="text" placeholder="Enter / Create a room of your choice . . ." autofocus="True" name="room_name" id="room_name" required = "True" width="100px"><span><button type="button" class="question"  data-bs-toggle="modal" data-bs-target="#staticBackdropROOM"><i class=" far fa-question-circle fa-2x"></i><span><small><br>Check</small></span></button></span><br>
+            <label>Username</label><br>
+            <input type="text" placeholder="Write your username . . ." name="username" id="username" required = "True" width="100px" />
+            <input type="submit" value="Enter Room">
+        </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdropROOM" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelROOM" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelROOM">Check, Is Room's Name you are Looking, Exists ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body RULES_DIV">
+                  <input  class="me-2 search-delete" type="search" id = "myInput" onkeyup="searchFun()" autofocus="True" placeholder="Filter Room's Name . . ." aria-label="Search">
+              </div>
+              <div class="modal-footer footer-b-r">
+                  <table id = "myTable" class="table table-r ">
+                    <p id="dem" style="color:red;padding-right:160px;"></p>
+                  <thead>
+                    <tr>
+                      <th scope="col">Room's Name</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdropRULES" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelRULES" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelRULES">Read the <b style='color:black;text-shadow:-0px -0px 0px red,0px 0px 1px red;'>RULES</b> and <b style='color:black;text-shadow:-0px -0px 1px red,0px 0px 1px red;'>IMP. POINTS</b> Carefully !</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" align="center">
+                  <h4 style='color:green;text-shadow:-0px -0px 1px lawngreen,0px 0px 1px lawngreen;'><u><b>. . . RULES . . .</b></u></h4>
+                  <b style='color:blue;'><i>* 5 Steps to be followed !</i></b>
+                  <ul class="list-group" align="left">
+                      <li class="list-group-item "><b style='color:blue;'>1. </b> <b>First character</b> is dollar. <b> ' $ ' </b> .</li>
+                      <li class="list-group-item"><b style='color:blue;'>2. </b> <b>Second character</b> is <b>user's name's First alphabet</b> .</li>
+                      <li class="list-group-item"><b style='color:blue;'>3. </b> <b>Third character</b> is character at position <b>Y</b>. Y is given as  <b>Y = ( length of user's name's ) / 2</b> .</li>
+                      <li class="list-group-item"><b style='color:blue;'>4. </b> <b>Fourth character</b> is <b>user's name's Second Last Alphabet</b> .</li>
+                      <li class="list-group-item"><b style='color:blue;'>5. </b> <b>Fifth character</b> is dollar. <b> ' $ ' </b> .</li>
+                      <p>
+                          <b style='color:green;'><u>For Eg.</u></b>
+                          Suppose name of person is <b><i>Rajneesh</i></b> .<br>
+                          For making Room's Name, Take all alphabet in <i style="border-bottom: 3px dotted;color:red;">CAPITAL LETTER </i>, i.e <b>RAJNEESH</b> . (    Info. 1 )<br>
+                          Then Start,<br>
+                              First Character is  '<b>$</b>' . ( Rule 1 )<br>
+                              Second Character is '<b>R</b>' . ( Rule 2 )<br>
+                              Third Character is  '<b>N</b>' . ( Rule 3 )<br>
+                                   ∵ Length of RAJNEESH is <b>8</b> .<br>
+                                   ∴ <b>Y</b> => 8 / 2 => 4<br>
+                                   ∴ <b>Y = 4</b><br>
+                                     Third Character will be ' <b><i>N</i></b> ' .<br>
+                              <b style="font-size:10px;">{ Note : In Case of odd no. divisibility / 2 , Don't Roundoff & Just ignore the decimal places.</b> }<br>
+                              Fourth Character is '<b>S</b>' . ( Rule 4 )<br>
+                              Fifth Character is  '<b>$</b>' . ( Rule 5 )<br>
+                               <b style="border-bottom: 3px double;">So Final Room's Name will be '<b style='color:blue;'>$RNS$</b>'</b>
+                          <hr>
+                      </p>
+                  </ul>
+                    <h5 style='color:green;text-shadow:-0px -0px 1px lawngreen,0px 0px 1px lawngreen;'><u><b>. . . IMP. POINTS . . .</b></u></h5>
+                  <ul class="list-group" align="left">
+                     <li class="list-group-item "> <p ><b>1. </b><i> Users must create Room's name by taking name in <span style='color:red;'><u><b>CAPITAL LETTER</b></u></span> , if not they will be responsible for cause.</i></p>
+                   </li>
+                    <li class="list-group-item p-3 "> <p ><b>2. </b><i> User 1 should make Room's Name by using User 2's Name & check that Is this
+                        room have been created yet or Not ? If Not then he have to create Room's name by using his own name  and vice versa.</i></p>
+                    <b style='color:green;'><u>For Eg.</u></b>
+                        <p class="p">User 1 = Ram & User 2 = Bharat </p>
+                        <i>Suppose,Firstly If <b>Ram</b> creates a Room's name, then he have to make Room's name <b>by using name of Bharat</b> : ' <u style='color:blue;'><b>$BAA$</b></u> '. Now he check this Room's Name by
+                            using filter section provide inside <b>'?'</b> button, If he finds there then, the Ram will use that same Name of Room to enter into that room, as firstly he have to send follow request to Bharat, if he accept then only he will be entering by using that Room's name.If Bharat Reject his request he will not be able to send request for that Room !
+                        </i>
+                        <p>But If Ram doesn't find such Room's which simply means that Bharat haven't created any, then <b style ="color:navy;">Ram</b> will create a new Room's name using his name & then Room's Name will be ' <b style ="color:navy;"><u>$RRA$</u></b> '</p>
+                    </li>
+                  </ul>
+
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Understood</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+{% include 'enroll/c_homejs.html' %}
+
+</html>

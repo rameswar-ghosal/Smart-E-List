@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change Password</title>
+</head>
+<body><br><br><br><br>
+<div align="center">
+    <h1>Forget Password ? &nbspReset it . . .</h1>
+      <h3>Soon You will have an option to Change Password through OTP / Unique Id,  Thankyou. { From SE-L Team }</h3>
+
+    <h2>(:&nbsp&nbsp Will be Available Soon ! &nbsp&nbsp :)</h2><br><br><br><br>
+  <a href="{% url 'profile' %}">Return to Login</a><br><br>
+</div>
+
+{% comment %}
+  <form action="" method="post" novalidate >
+    {% csrf_token %}
+    <table align='center'>
+         {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+         <tr>
+             <td bgcolor="red">{{error}}</td>
+         </tr>
+      {% endfor %}
+
+
+    {% endif %}
+
+    </table>
+    <table   cellspacing="20" cellpadding="2" align=center>
+         {% for fm in form %}
+
+             <tr>
+                 <td align="center" bgcolor="lightyellow">{{fm.label_tag}}</td>
+                 <td align="center" bgcolor="cyan">{{fm}}</td>
+                 <td align="center" bgcolor="lightcyan">{{fm.errors|striptags}}</td>
+             </tr>
+  {% endfor %}
+   </table><br><br>
+ <div align="center"><input type="submit" value="Save"><br><br>
+ <h4>Soon You will have an option to Change Password through OPT/UniqueId ,Thankyou. { From SE-L Team }</h4>
+ </div>
+  </form><br><br><br>
+  <div align="center">
+<a href="{% url 'logout' %}">Logout</a>
+{% endcomment %}
+
+  </div>
+</body>
+</html>

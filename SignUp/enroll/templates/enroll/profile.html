@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable = no">
+      <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+        crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+<link rel="stylesheet" href="{% static 'my/css/g1.css' %}">
+
+</head>
+<title>Profile</title>
+<body class="img-fluid">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <h4><span class="SH mr-3">Profile</span></h4>
+            <span class="welcome ">Welcome {{name}}</span>
+
+            <button class="navbar-toggler mt-2 " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav ml-3 mt-3 mb-3 otherlinks mn-dropdown-button">
+                <div class="dropdown  ">
+                  <a class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    Select Any Do Many
+                  </a>
+
+                  <div class="dropdown-menu  dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item dropdown-hover-link" href="{% url 'export' %}">Export List</a>
+                    <a class="dropdown-item dropdown-hover-link" href="{% url 'import' %}">Import List</a>
+                    <a class="dropdown-item dropdown-hover-link" href="{% url 'email' %}">Send Mail</a>
+                    <a class="dropdown-item dropdown-hover-link" href="{% url 'search' %}">Search Item's Place /<br> Just Place</a>
+                    <a class="dropdown-item dropdown-hover-link" href="{% url 'changepass1' %}">Change Password</a>
+                    {% for i in city_name %}
+                    <a class="dropdown-item dropdown-hover-link" href="{% url 'updatecity' i.user_id  %}">Change City / Phoneno.  </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <span>
+                  <a href="{% url 'logout' %}" class="mt-1 mb-3" style="color:red;" data-toggle="tooltip" data-placement="bottom" title="Exit from this Page"  loading="lazy" role="button" aria-pressed="true"><i class="fas fa-sign-out-alt fa-2x"></i></a><small align="center" style="font-size:12px;color:red;">Logout</small>
+                </span>
+              </div>
+              <div class="col-4">
+                 <span>
+                    <a href="{% url 'C_home' %}" class="c-l-c"><i class="mes-sh far fa-comments fa-2x"></i></a><br><small align="center" style="font-size:12px;color:lawngreen;">Chat</small>
+
+                 </span>
+              </div>
+            <div class="col-4">
+                {% if messages_len == 0 %}
+                    <span>
+                        <button class="btnn" data-toggle="tooltip" data-placement="right" title="No Notification Yet !">
+                        <i class="ki  ml-3 fa fa-bell fa-2x" aria-hidden="true"></i>
+                      </button><br><small align="center" style="font-size:12px;color:whitesmoke;">Notification</small>
+                    </span>
+
+                 {% else %}
+
+               {% if message_alert == 1 %}
+
+                <form method="post" id="task-form">
+                  {% csrf_token %}
+                  <input class="dply " type="text" placeholder="Enter Task" id="task"
+                     value="yes" >
+                  <input class="dply " type="text" placeholder="Enter Task"  id="se"
+                     value="" >
+
+                  <span>
+                  <button type="submit" class="badge-sh btnn" id="myBtn" >
+                    <i class="badge-li ml-3 fa fa-bell fa-2x" aria-hidden="true"></i>
+                    <span id="CLI" class="badge rounded-pill badge-notification bg-danger">{{messages_len}}</span>
+                  </button><br><small align="center" style="font-size:12px;color:whitesmoke;">Notification</small></span>
+                </form>
+                {% else %}
+                <span>
+                     <button type="submit" class="btnn" id="myBtn" >
+                         <i class="badge-li ml-3 fa fa-bell fa-2x" aria-hidden="true"></i>
+                         <span class="badge rounded-pill badge-notification bg-danger"></span>
+                  </button><br><small align="center" style="font-size:12px;color:whitesmoke;">Notification</small>
+                  </span>
+              {% endif %}
+              {% endif %}
+            </div>
+          </nav>
+        <img class="r mt-2" src ="{% static 'my/images/sun.png' %}" id="icon" data-bs-toggle="tooltip" data-bs-placement="left" title="Mode Change">
+
+        </div>
+
+     {% for i,j in messages_in.items %}
+
+              <div class="at-center toast dply" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                  <img src="{% static 'my/images/tstorm1.png' %}" class="img-c rounded mr-2" alt="...">
+                  <strong class="mr-auto">Weather Acknowledgement</strong>
+                  <small align="right" style="padding-left:20px;">{{j}}</small>
+
+                  <button type="button"  class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="toast-body">
+                  {{i}}
+                </div>
+              </div>
+      {% endfor %}
+
+      <div class="col-sm-6 mt-3 mb-3">
+        <h2 align="Middle">Schedule an Item . . . </h2>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="table-responsive-sm">
+              <table class="table table-borderless table-txt-color">
+                <thead>
+                  <tr>
+                    <th scope="col" class="labe">Schedule Item's</th>
+                    <th scope="col" class="labe">Schedule Date</th>
+                    <th scope="col" class="labe">Schedule Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  {% for i in horm %}
+
+                    <td class="labe">{{i}}{{i.errors|striptags}}</td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+              </table>
+              {% if messages %}
+              {% for message in messages %}
+                <small {% if message.tags %} class ="{{message.tags}}"{% endif %}><h1>{{message}}</h1> </small>
+              {% endfor %}
+             {% endif %}
+            </div>
+              <input type ="submit" class="schedule-button mt-3 mb-3 btn btn-outline-secondary btn-lg"  value="Submit">
+
+        </form>
+      </div>
+
+      <div class="col-sm-6">
+        <hr class="hrr">
+
+        <p>
+          <button class="btn btn-lg btn-danger  mb-3 mt-3" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            ' {{name}} ' One Note - 1 for You
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <h4>Please Remember, Regarding Scheduled List !</h3>
+            <p>{{name}}, Remember that your Scheduled Items from List will be removed Automatically, When Date - Time of it gets Expires !. Right?</p>
+          </div>
+        </div>
+        <h2 align="Middle">Your Scheduled List . . .</h2>
+        <div class="table-responsive-sm">
+
+        <table class="table table-borderless table-txt-color">
+          <thead>
+            <tr>
+              <th scope="col" class="labe">Pin / Unpin<small style="color:pink;font-size:10px;"><br>{ Tap Emogi to do }</small></th>
+              <th scope="col" class="labe">Scheduled Item's</th>
+              <th scope="col" class="labe">Scheduled Date</th>
+              <th scope="col" class="labe">Scheduled Time</th>
+              <th scope="col" class="labe">Edit</th>
+              <th scope="col" class="labe">Delete</th>
+
+            </tr>
+          </thead>
+
+          <tbody>
+            {% if data %}
+            {% for i in data %}
+            <tr class="yes-table-data">
+              <td>
+                <form method = 'POST' action='' id = 'pinform'>
+                    {% csrf_token %}
+                    {% if len_PIN == 0 %}
+                        <!--<input type="text" data="{{i.id}}" id = 'myPid' value="">-->
+                         <input class="form-check-input" onclick="checkfunction()" required= 'true' type="checkbox" name='pinn' id="ft">
+                         <button type='submit' onclick="pinfunction()" data-bs-toggle="tooltip" data-bs-placement="top" title="" style='color:gold;font-size:12px;background:none;outline:none;border:none;'><img id = 'iconst' src="{% static 'my/images/think.gif' %}"><br>Pin ?</button>
+                    {% else %} 
+                        {% if i.id in pin_d %}
+                            <!--<input type="text" data="{{i.id}}" id = 'myPid' value="">-->
+
+                            <input class="form-check-input" onclick="checkfunction()" type="checkbox" name='pinn' id="ft" checked >
+                            <button type='submit' onclick="pinfunction()" data-bs-toggle="tooltip" data-bs-placement="top" title="" style='color:lime;font-size:12px;background:none;outline:none;border:none;'><img id = 'iconst' src="{% static 'my/images/satisfied.gif' %}"><br>Unpin ?</button>
+                        {% else %} 
+                        <!--<input type="text" data="{{i.id}}" id = 'myPid' value="">-->
+                        <input class="form-check-input" onclick="checkfunction()" type="checkbox" name='pinn' id="ft" >
+                          <button type='submit' onclick="pinfunction()" data-bs-toggle="tooltip" data-bs-placement="top" title="" style='color:gold;font-size:12px;background:none;outline:none;border:none;'><img id = 'iconst' src="{% static 'my/images/think.gif' %}"><br>Pin ?</span></button>
+                        {% endif %} 
+                    {% endif %}     
+                    
+                </form>
+               </td>
+              <td class="labe">{{i.schedule_items}}</td>
+              <td class="labe">{{i.schedule_date}}</td>
+              <td class="labe">{{i.schedule_time}}</td>
+              <td>
+                <a class="edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit this Item If Any !"  loading="lazy" href="{% url 'updatedata' i.id %}" role="button"><i class="far fa-edit "></i></a>
+              </td>
+              <td>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title modal-T-C" id="staticBackdropLabel">YOU TAP ON DELETE !</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                              <h1 class=" modal-Txt-C">Are You Sure To Delete This Item ?</h1>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn-space btn btn-secondary" data-dismiss="modal">Close</button>
+                          <form action="{% url 'deletedata' i.id %}" method="POST">
+                            {% csrf_token %}
+                          <button type="submit" class="modal-delete-btn"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                    <!-- Button trigger modal -->
+                      <button type="button" class="delete-btn" data-toggle="modal" data-target="#staticBackdrop" data-toggle="tooltip" data-placement="bottom" title="Delete this Scheduled Item"  loading="lazy"><i class="fas fa-trash-alt"></i>
+                      </button>
+                  </td>
+              {% endfor %}
+              {% else %}
+              <h2 align="Middle">Yet, You Haven't Scheduled an Item !</h2>
+              <tr class="no-table-data">
+                <td class="labe">Nothing to Show</td>
+                <td class="labe">Nothing to Show</td>
+                <td class="labe">Nothing to Show</td>
+                <td class="labe">Nothing to Show</td>
+                <td class="labe">Nothing to Show</td>
+                <td class="labe">Nothing to Show</td>
+              </tr>
+              {% endif %}
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+      </div>
+      <div class="col-sm-6">
+        <hr class="hrr">
+        <p>
+          <button class="btn btn-lg btn-danger  mb-3 mt-3" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+            ' {{name}} ' One Note - 2 for You
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample1">
+          <div class="card card-body">
+            <h4>Please Remember, Regarding Expired List !</h3>
+            <p>{{name}}, You can See Your Expired Items below till 24 Hrs from Automatically deletion !, After that it will Automatically Vanished forever.. Right?</p>
+          </div>
+        </div>
+
+        <h3 align="Middle" class="labe">Your Expired List . . .</h2>
+        <div class="table-responsive-sm " >
+
+        <table class="table table-borderless expired-table-txt-color" disabled="True">
+          <thead>
+            <tr>
+              <th scope="col" >Scheduled Item's</th>
+              <th scope="col" >Scheduled Date</th>
+              <th scope="col" >Scheduled Time</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% if lx > 0 %}
+            {% for i in xx %}
+            <tr>
+
+              <td >{{i.schedule_items}}</td>
+              <td >{{i.schedule_date}}</td>
+              <td >{{i.schedule_time}}</td>
+            </tr>
+              {% endfor %}
+              {% else %}
+              <tr>
+                <td >Nothing to Show</td>
+                <td >Nothing to Show</td>
+                <td >Nothing to Show</td>
+              </tr>
+              {% endif %}
+            </tr>
+
+          </tbody>
+        </table>
+        </div>
+
+      </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+{% include 'enroll/profilejs.html' %}
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable = no">
+    <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+  crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Philosopher&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Rancho:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montez&display=swap" rel="stylesheet">
+
+  <!-- fontawesome -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+    crossorigin="anonymous"/>
+<style>
+    .container1-color{background-color:black;}
+    .heading-text{
+         margin-left:10%;
+         margin-right:10%;
+         color:white;
+         font-family:Philosopher;
+         font-weight: lighter;
+         font-size:50px;
+         text-shadow:2px 2px 5px navy,2px 2px 5px white;
+         letter-spacing:5px;
+    }
+
+    .heading-text::first-letter{
+                         font-size:80px;
+            text-shadow :2px 2px 5px floralwhite;}
+
+    .sub-heading-text{font-size:50px;color:mintcream;font-weight: lighter;
+        font-family: 'Montez', cursive;letter-spacing:5px;text-shadow :3px 3px 4px navy, 2px 2px 4px white;}
+
+    .sub-heading1-text{font-size:20px;color:white;font-weight: lighter;
+    font-family:'Philosopher';}
+    .sub-heading2-text{font-size:15px;color:orange;
+        font-weight: lighter;font-family:serif;}
+
+
+    .update-button{box-shadow:-2px -2px 4px  rgb(54, 248, 54),2px 2px 4px rgb(54, 248, 54);}
+
+    hr{background-color:silver;}
+    .features{font-size:40px;color:gold;font-weight:lighter;text-shadow:2px 2px 3px green;}
+    .para-writing-text{font-size:30px;color:cyan;text-shadow:2px 2px 5px green,2px 2px 5px green;font-weight:lighter;
+    font-family:'Philosopher';}
+    .para-writing{color:lightcyan;font-size:20px;font-weight:lighter;
+    word-wrap:break-word;}
+    .button-margin{margin-left:40%;box-shadow:-2px -2px 4px blue,2px 2px 4px blue;}
+
+</style>
+<body>
+<div class="container-fluid container1-color ">
+    <div class="row">
+        <div class="col-sm-12">
+             <h1 class="heading-text">About me </h1>
+             <h2 class="sub-heading-text">Se-L&nbsp<span class="sub-heading1-text">Smart E-List</span></h2>
+             <hr>
+             <h3 class="sub-heading2-text">Developers : Rajneesh | Raju | Pankaj</h3>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-dark">
+    <div class="row">
+        <div class="col-sm-12">
+            <p>
+                <button class="btn btn-lg btn-outline-success update-button mb-3 mt-3" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Updates
+                </button>
+
+                <a href="{% url 'home' %}" type="button" class="button-margin btn btn-lg btn-outline-primary ">Home</a>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <h4>Earlier Updates</h3>
+                  <small><span class="pt-2 pb-2">Import Data file Section Bug Improved.[ 17-10-20 ]</span><br><span class="pt-2 pb-2">Weather API + Logics Integrated.[ 17-10-20 ]</span><br><span class="pt-2 pb-2">Expire Schedule Item's Table Added in your Profile.[ 19-10-20 ]<br><span class="pt-2 pb-2">Search Item's Place / Just Place Section on your Profile your Profile.[ 21-10-20 ]</span>
+                  <br><span class="pt-2 pb-2">Both Light & Dark Mode is available.[ 15-04-21 ]</span><br>
+                  </small>
+                  <hr>
+                  <h4>Upcoming Updates</h3>
+                    <small>Attachment option in Sending Email will be enabled soon</small>
+                </div>
+            </div>
+        <hr>
+        <h2 class="features">Features ...</h2>
+        <hr>
+        <h1 class="para-writing-text ">1. Bad Weather Acknowledgement !</h1>
+        <h4 class="para-writing text-justify">If Weather seems to be poor on your Scheduled date, This will notify you before from your Scheduled date as by sending a mail / Text Message / Notification Message on your profile.
+        </h4>
+        <hr>
+        <h1 class="para-writing-text">2. Search Item's Place / Just Place here Only !</h1>
+        <h4 class="para-writing text-justify">If You are in a City which is new to you then, it can search any Item's Place  (e.g.- Milk Shop, Vegetable shop etc.) or JUST Place( e.g.:- Hospital, Bank etc. ) which you have scheduled  in your list , No other app is required.
+        </h4>
+        <hr>
+        <h1 class="para-writing-text">3. Export your Scheduled List !</h1>
+        <h4 class="para-writing text-justify">Export Your List in 5 Formats [ CSV, JSON, XML(Excel), YAML, HTML ].
+        </h4>
+        <hr>
+        <h1 class="para-writing-text">4. Import Se-L's Generated Scheduled List & Have a Look ! </h1>
+        <h4 class="para-writing text-justify">Import SEL's generated Schedule List of 4 Formats [ CSV, JSON, XML(Excel), YAML ] & Have a look, No other app is required.
+        </h4>
+        <hr>
+        <h1 class="para-writing-text">5. Mail Your Scheduled List</h1>
+        <h4 class="para-writing text-justify">First Export your Scheduled list in your choiced format & Mail to whom you want to send, No other app is required.
+        </h4>
+        <hr>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+<script>$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})</script>
+
+</body>
+</html>

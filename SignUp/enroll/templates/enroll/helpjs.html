@@ -1,0 +1,46 @@
+<script>
+
+    const searchFun = () => {
+       let filter = document.getElementById('myInput').value.toUpperCase();
+       console.log(filter)
+       let myTable = document.getElementById('myTable');
+       let tr = myTable.getElementsByTagName('tr');
+         console.log(tr)
+         console.log(tr.length)
+         let v = 0;
+         if (tr.length != 0)
+         {
+           for(var i=0; i< tr.length;i++)
+           {
+              let td = tr[i].getElementsByTagName('td')[0].textContent;
+               console.log(td)
+               if ((td.toUpperCase()).indexOf(filter)>-1)
+               {
+                      tr[i].style.display="";
+               }
+               else
+               {
+                    tr[i].style.display="none";
+                    v = v + 1
+               }
+
+             }
+           if   (v == tr.length)
+            {
+                {
+                     output="<tr><td style='color:red;font-size:20px;'>" + '| Nothing to show |' + "</td></tr>"
+                  }
+                  $("#tbody").html(output);
+            }
+         console.log(v)
+         console.log(tr.length)
+         }
+         else
+         {
+             {
+                     output="<tr><td>" + 'Nothing to show !' + "</td></tr>"
+                  }
+                  $("#tbody").html(output);
+         }
+    }
+</script>

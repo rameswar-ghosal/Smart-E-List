@@ -1,0 +1,108 @@
+      :root{
+      --primary-color:white;
+      --secondary-color:black;
+        transition:all 2s ease-in-out;
+      }
+      .custom-margin{
+       margin-bottom:50px;
+      }
+
+      .marg{
+                padding-bottom:3px;
+                padding-top:3px;
+                padding-left:1120px;
+      }
+      h1{
+        font-size:25px;
+        margin-top:20px;
+        margin-bottom:20px;
+
+        color:var(--primary-color);
+      }
+
+
+      h2{
+            font-family: 'Montez', cursive;
+            font-size:80px;
+            margin-top:100px;
+            margin-left:50px;
+            color:var(--primary-color);
+            text-align:left;
+            letter-spacing:10px;
+            text-shadow :5px 5px 7px navy, 5px 5px 13px white;
+         }
+
+      h2::first-letter{
+                         font-size:150px;
+            text-shadow :7px 5px 13px navy,6px 5px 13px white;}
+
+
+          .a-l:link {color:var(--primary-color);}
+          .a-l:visited {color:var(--primary-color);}
+
+
+     .sel-p{
+         font-size:40px;
+         font-family: 'Calibri';
+         color:var(--primary-color);
+         margin-left:50px;
+     }
+
+     .botm{color:gold;}
+     .sub-head{color:var(--primary-color);
+     }
+     .d-p{background-color:violet;}
+     .above-useful{background:var(--primary-color);}
+     .h6-color{color:var(--secondary-color)}
+     p{
+         font-size:15px;
+         font-family:'Calibri';
+
+         color:var(--primary-color);
+     }
+
+     .icon-i{color:chartreuse;
+
+     }
+
+     .l{background:var(--primary-color);}
+
+
+     small{
+             color:var(--primary-color);
+             font-family: 'Great Vibes', cursive;
+             font-size:25px;
+             margin-left:50px;
+             margin-bottom:50px;
+             margin-top:50px;
+
+     }
+     .modal-T-C{color:navy;}
+.modal-box{color:maroon;font-family: 'philosopher';font-weight: bold;
+       background-color:lightgoldenrodyellow;box-shadow:-5px -5px 30px orange,5px 5px 30px orange;
+       }
+    .ss{font-size:20px;color:blue;}
+    .kbar{position:fixed;z-index:1000;}
+     #icon{
+     width:40px;
+     cursor:pointer;
+     }
+     body{
+           background:var(--secondary-color);
+
+     }
+      .dark-theme{
+         --primary-color:black;
+         --secondary-color:white;
+       transition:all .5s ease-in-out;
+     }
+     .s{
+           color:var(--primary-color);
+           font-size: 20px;
+      font-family: 'Tangerine', cursive;
+      margin-left:5px;
+
+     }
+     .r{margin-left:85%;
+     }
+      .gi{width:300px;margin-top:50%;box-shadow:-10px -10px 40px black,10px 10px 40px black;}
